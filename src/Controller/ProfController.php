@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Prof;
 use App\Form\Type\ProfType;
 use App\Repository\ProfRepository;
+use App\Repository\ClasseRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -17,8 +18,9 @@ class ProfController extends AbstractController
     */
     public function afficheListeProf(ProfRepository $repository){
         $profs = $repository->findAll();
-        return $this->render('prof.html.twig',[
-            "profs" => $profs
+        return $this->render('personne.html.twig',[
+            "titre" => "Professeurs",
+            "personnes" => $profs
         ]);
     }
 
@@ -48,11 +50,17 @@ class ProfController extends AbstractController
     }
 
     /**
-     * @Route("/prof/{id}/sup", name="sup")
+     * @Route("/prof/{id}/sup", name="supprof")
     */
-    public function supCandy($id, ProfRepository $repository, EntityManagerInterface $em){     
+    public function supProf($id, ProfRepository $repository, ClasseRepository $repositoryClasse, EntityManagerInterface $em){     
         $prof = $repository->find($id);
-        $em-> remove($prof);
+        $classes = $repositoryClasse->findby(['id_prof' => $id]);
+        /*foreach($classes as $classe){
+            if (!empty($classe)) {
+                return $this->redirectToRoute('classe');
+            }
+        }*/
+        $em->remove($prof);
         $em->flush();
 
         return $this->redirectToRoute('prof');

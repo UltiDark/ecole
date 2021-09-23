@@ -2,7 +2,7 @@
 
 namespace App\Form\Type;
 
-use App\Entity\Matiere;
+use App\Entity\Classe;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
@@ -21,10 +21,10 @@ class EleveType extends AbstractType{
             ->add('prenom', TextType::class, [
 				'invalid_message' => 'Veuillez entrer un prenom'
 			])
-            ->add('id_matiere', EntityType::class, [
-				'class' => Matiere::class,
+            ->add('id_classe', EntityType::class, [
+				'class' => Classe::class,
 				'choice_label' => 'nom',
-				'label' => 'Matière'
+				'label' => 'Classe'
 			])
 			->add('date_de_naissance', DateType::class, [
 				'widget' => 'choice',

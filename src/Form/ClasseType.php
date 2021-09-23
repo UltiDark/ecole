@@ -2,7 +2,7 @@
 
 namespace App\Form\Type;
 
-use App\Entity\Matiere;
+use App\Entity\Prof;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
@@ -26,12 +26,6 @@ class ClasseType extends AbstractType{
 				'class' => Prof::class,
 				'choice_label' => 'nom',
 				'label' => 'Prof Principal'
-			])
-			->add('date_de_naissance', DateType::class, [
-				'widget' => 'choice',
-				'years' => range(date('Y'), date('Y')-100),
-				'label' => 'Date de Naissance',
-				'required' => false
 			])
 			->add('submit', SubmitType::class, [
 				'label' => 'Envoyer'

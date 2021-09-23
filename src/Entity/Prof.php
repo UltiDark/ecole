@@ -25,9 +25,9 @@ class Prof
     private $nom;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="date", nullable=true)
      */
-    private $prenom;
+    private $date_de_naissance;
 
     /**
      * @ORM\ManyToOne(targetEntity=Matiere::class, inversedBy="profs")
@@ -36,14 +36,14 @@ class Prof
     private $id_matiere;
 
     /**
-     * @ORM\OneToMany(targetEntity=Classe::class, mappedBy="id_prof")
+     * @ORM\OneToMany(targetEntity=Classe::class, mappedBy="id_prof", orphanRemoval=true)
      */
     private $classes;
 
     /**
-     * @ORM\Column(type="date", nullable=true)
+     * @ORM\Column(type="string", length=255)
      */
-    private $date_de_naissance;
+    private $prenom;
 
     public function __construct()
     {
@@ -67,14 +67,14 @@ class Prof
         return $this;
     }
 
-    public function getPrenom(): ?string
+    public function getDateDeNaissance(): ?\DateTimeInterface
     {
-        return $this->prenom;
+        return $this->date_de_naissance;
     }
 
-    public function setPrenom(string $prenom): self
+    public function setDateDeNaissance(?\DateTimeInterface $date_de_naissance): self
     {
-        $this->prenom = $prenom;
+        $this->date_de_naissance = $date_de_naissance;
 
         return $this;
     }
@@ -121,14 +121,14 @@ class Prof
         return $this;
     }
 
-    public function getDateDeNaissance(): ?\DateTimeInterface
+    public function getPrenom(): ?string
     {
-        return $this->date_de_naissance;
+        return $this->prenom;
     }
 
-    public function setDateDeNaissance(?\DateTimeInterface $date_de_naissance): self
+    public function setPrenom(string $prenom): self
     {
-        $this->date_de_naissance = $date_de_naissance;
+        $this->prenom = $prenom;
 
         return $this;
     }

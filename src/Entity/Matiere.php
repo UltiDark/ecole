@@ -25,7 +25,7 @@ class Matiere
     private $nom;
 
     /**
-     * @ORM\OneToMany(targetEntity=Prof::class, mappedBy="id_matiere")
+     * @ORM\OneToMany(targetEntity=Prof::class, mappedBy="id_matiere", orphanRemoval=true)
      */
     private $profs;
 

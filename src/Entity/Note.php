@@ -34,7 +34,6 @@ class Note
 
     /**
      * @ORM\ManyToOne(targetEntity=Matiere::class, inversedBy="notes")
-     * @ORM\JoinColumn(nullable=false)
      */
     private $id_matiere;
 

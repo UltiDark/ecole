@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des Classes{% endblock %}
+
+{% block body %}
+
+    <h1>Classe</h1>
+
+    <div class="d-flex justify-content-around">
+        {% for classe in classes %}
+            <div class="card m-4" style="width: 18rem;">
+              <div class="card-body">
+                <h5 class="card-title">{{classe.nom}}</h5>
+                <h6 class="card-subtitle mb-2 text-muted">{{classe.niveau}}</h6>
+                <!--<h6 class="card-subtitle mb-2 text-muted">{{classe.idProf.nom}} {{classe.idProf.prenom}}</h6>-->
+                <a href="{{ path('supclasse', { id: classe.id }) }}" class="card-link text-danger">Supprimer</a>
+              </div>
+            </div>
+        {% endfor %}
+    </div>
+
+    <div class="card text-center">
+        <div class="card-header">Ajouter Une Classe</div>
+        <div class="card-body">
+          <p class="card-text">Cliquer ci-dessous pour afficher le formulaire</p>
+          <a href="{{path('createclasse')}}" class="btn btn-primary">Formulaire</a>
+        </div>
+    </div>
+
+{% endblock %}

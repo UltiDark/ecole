@@ -30,20 +30,19 @@ class Eleve
     private $prenom;
 
     /**
-     * @ORM\Column(type="date", nullable=true)
+     * @ORM\Column(type="date")
      */
     private $date_de_naissance;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Classe::class, inversedBy="eleves")
+     */
+    private $id_classe;
 
     /**
      * @ORM\OneToMany(targetEntity=Note::class, mappedBy="id_eleve")
      */
     private $notes;
-
-    /**
-     * @ORM\ManyToOne(targetEntity=Classe::class, inversedBy="eleves")
-     * @ORM\JoinColumn(nullable=false)
-     */
-    private $id_classe;
 
     public function __construct()
     {
@@ -84,9 +83,21 @@ class Eleve
         return $this->date_de_naissance;
     }
 
-    public function setDateDeNaissance(?\DateTimeInterface $date_de_naissance): self
+    public function setDateDeNaissance(\DateTimeInterface $date_de_naissance): self
     {
         $this->date_de_naissance = $date_de_naissance;
+
+        return $this;
+    }
+
+    public function getIdClasse(): ?Classe
+    {
+        return $this->id_classe;
+    }
+
+    public function setIdClasse(?Classe $id_classe): self
+    {
+        $this->id_classe = $id_classe;
 
         return $this;
     }
@@ -117,18 +128,6 @@ class Eleve
                 $note->setIdEleve(null);
             }
         }
-
-        return $this;
-    }
-
-    public function getIdClasse(): ?Classe
-    {
-        return $this->id_classe;
-    }
-
-    public function setIdClasse(?Classe $id_classe): self
-    {
-        $this->id_classe = $id_classe;
 
         return $this;
     }

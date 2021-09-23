@@ -1,0 +1,56 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des {{titre}}{% endblock %}
+
+{% block body %}
+
+    <h1>{{titre}}</h1>
+
+    <div class="d-flex justify-content-around">
+        {% for personne in personnes %}
+            <div class="card m-4" style="width: 18rem;">
+              <div class="card-body">
+                <h5 class="card-title">{{personne.nom}} {{personne.prenom}}</h5>
+            
+                {% if titre == "Elèves" %}
+                  {% if personne.idClasse is not empty %}
+                    <h6 class="card-title">{{personne.idClasse.nom}}<h6>
+                  {% else %}
+                    <h6 class="card-text text-danger" >Pas de classe</h6>
+                  {% endif %}
+                {% elseif titre == "Professeurs" %}
+                  <h6 class="card-title">{{personne.idMatiere.nom}}</h6>
+                {% endif %}
+
+                {% if personne.dateDeNaissance is not empty %}
+                    <p><small class="card-text" >{{personne.dateDeNaissance.format('d/m/Y')}}</small></p>
+                {% else %}
+                    <p><small class="card-text" >Date non renseigner</small></p>
+                {% endif %}
+
+                {% if titre == "Elèves" %}
+                <a href="{{ path('supeleve', { id: personne.id }) }}" class="card-link text-danger">Supprimer</a>
+                {% elseif titre == "Professeurs" %}
+                <a href="{{ path('supprof', { id: personne.id }) }}" class="card-link text-danger">Supprimer</a>
+                {% endif %}
+              </div>
+            </div>
+            {% endfor %}
+    </div>
+
+    <div class="card text-center">
+        <div class="card-header">
+          Ajouter des {{titre}}
+        </div>
+        <div class="card-body">
+          <p class="card-text">Cliquer ci-dessous pour afficher le formulaire</p>
+          {% if titre == "Elèves" %}
+            <a href="{{path('createeleve')}}" class="btn btn-primary">Formulaire</a>
+          {% elseif titre == "Professeurs" %}
+            <a href="{{path('createprof')}}" class="btn btn-primary">Formulaire</a>
+          {% endif %}
+
+        </div>
+    </div>
+
+{% endblock %}
