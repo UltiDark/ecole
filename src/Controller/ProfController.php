@@ -16,13 +16,11 @@ class ProfController extends AbstractController
     /**
     * @Route("/prof", name="prof")
     */
-    public function afficheListeProf(ProfRepository $repository, ClasseRepository $repositoryClasse){
+    public function afficheListeProf(ProfRepository $repository){
         $profs = $repository->findAll();
-        $classes = $repositoryClasse->findAll();
         return $this->render('personne.html.twig',[
             "titre" => "Professeurs",
             "personnes" => $profs,
-            "classes" => $classes
         ]);
     }
 
@@ -54,14 +52,8 @@ class ProfController extends AbstractController
     /**
      * @Route("/prof/{id}/sup", name="supprof")
     */
-    public function supProf($id, ProfRepository $repository, ClasseRepository $repositoryClasse, EntityManagerInterface $em){     
+    public function supProf($id, ProfRepository $repository, EntityManagerInterface $em){     
         $prof = $repository->find($id);
-        $classes = $repositoryClasse->findby(['id_prof' => $id]);
-        /*foreach($classes as $classe){
-            if (!empty($classe)) {
-                return $this->redirectToRoute('classe');
-            }
-        }*/
         $em->remove($prof);
         $em->flush();
 

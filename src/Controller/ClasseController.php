@@ -5,7 +5,6 @@ namespace App\Controller;
 use App\Entity\Classe;
 use App\Form\Type\ClasseType;
 use App\Repository\ClasseRepository;
-use App\Repository\EleveRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -51,14 +50,8 @@ class ClasseController extends AbstractController
     /**
      * @Route("/classe/{id}/sup", name="supclasse")
     */
-    public function supClasse($id, EleveRepository $repositoryEleve, ClasseRepository $repository, EntityManagerInterface $em){     
+    public function supClasse($id, ClasseRepository $repository, EntityManagerInterface $em){     
         $classe = $repository->find($id);
-        $eleves = $repositoryEleve->findby(['id_classe' => $id]);
-        /*foreach($eleves as $eleve){
-            if (!empty($eleve)) {
-                return $this->redirectToRoute('eleve');
-            }
-        }*/
         $em-> remove($classe);
         $em->flush();
 

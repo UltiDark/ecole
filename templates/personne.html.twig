@@ -20,10 +20,8 @@
                   {% endif %}
                 {% elseif titre == "Professeurs" %}
                   <h6 class="card-title">{{personne.idMatiere.nom}}</h6>
-                  {% for classe in classes %}
-                    {% if classe.idProf.nom == personne.nom %}
+                  {% for classe in personne.classes %}
                     <h6 class="card-title">{{classe.nom}}</h6>
-                    {% endif %}
                   {% endfor %}
                 {% endif %}
 
