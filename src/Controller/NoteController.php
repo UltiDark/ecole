@@ -40,7 +40,7 @@ class NoteController extends AbstractController
         else
         {
             return $this->render('formulaire.html.twig', [
-                'titre' => 'Une Note Pour '. $eleve->nom. ' ' .$eleve->prenom,
+                'titre' => 'Ajouter une note pour '. $eleve->nom. ' ' .$eleve->prenom,
                 'form' => $formulaire->createView()
             ]);
         }

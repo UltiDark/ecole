@@ -50,7 +50,7 @@ class EleveController extends AbstractController
         else
         {
             return $this->render('formulaire.html.twig', [
-                'titre' => 'Une eleve',
+                'titre' => 'Ajouter une eleve',
                 'form' => $formulaire->createView()
             ]);
         }

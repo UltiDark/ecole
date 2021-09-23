@@ -42,7 +42,7 @@ class ClasseController extends AbstractController
         else
         {
             return $this->render('formulaire.html.twig', [
-                'titre' => 'Une classe',
+                'titre' => 'Ajouter une classe',
                 'form' => $formulaire->createView()
             ]);
         }
