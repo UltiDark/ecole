@@ -8,7 +8,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 
-class MailController extends AbstractController {
+class ContactController extends AbstractController {
     /**
      * @Route("/mail", name="envoiemail")
      */
