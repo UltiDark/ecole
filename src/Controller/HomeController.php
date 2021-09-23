@@ -2,13 +2,10 @@
 
 namespace App\Controller;
 
-// use fonctionne comme require et  
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-
-// nos classes doivent etre une extension de la classe mere de Symfony
 class HomeController extends AbstractController
 {
     /**

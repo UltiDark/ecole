@@ -16,11 +16,13 @@ class ProfController extends AbstractController
     /**
     * @Route("/prof", name="prof")
     */
-    public function afficheListeProf(ProfRepository $repository){
+    public function afficheListeProf(ProfRepository $repository, ClasseRepository $repositoryClasse){
         $profs = $repository->findAll();
+        $classes = $repositoryClasse->findAll();
         return $this->render('personne.html.twig',[
             "titre" => "Professeurs",
-            "personnes" => $profs
+            "personnes" => $profs,
+            "classes" => $classes
         ]);
     }
 

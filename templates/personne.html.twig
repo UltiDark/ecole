@@ -20,6 +20,11 @@
                   {% endif %}
                 {% elseif titre == "Professeurs" %}
                   <h6 class="card-title">{{personne.idMatiere.nom}}</h6>
+                  {% for classe in classes %}
+                    {% if classe.idProf.nom == personne.nom %}
+                    <h6 class="card-title">{{classe.nom}}</h6>
+                    {% endif %}
+                  {% endfor %}
                 {% endif %}
 
                 {% if personne.dateDeNaissance is not empty %}
@@ -29,9 +34,10 @@
                 {% endif %}
 
                 {% if titre == "Elèves" %}
-                <a href="{{ path('supeleve', { id: personne.id }) }}" class="card-link text-danger">Supprimer</a>
+                  <a href="{{ path('detaileleve', { id: personne.id }) }}" class="card-link text-info">Détails</a>
+                  <a href="{{ path('supeleve', { id: personne.id }) }}" class="card-link text-danger">Supprimer</a>
                 {% elseif titre == "Professeurs" %}
-                <a href="{{ path('supprof', { id: personne.id }) }}" class="card-link text-danger">Supprimer</a>
+                  <a href="{{ path('supprof', { id: personne.id }) }}" class="card-link text-danger">Supprimer</a>
                 {% endif %}
               </div>
             </div>
@@ -41,7 +47,7 @@
     <div class="card text-center">
         <div class="card-header">
           Ajouter des {{titre}}
-        </div>
+        </div>  
         <div class="card-body">
           <p class="card-text">Cliquer ci-dessous pour afficher le formulaire</p>
           {% if titre == "Elèves" %}
